@@ -1,7 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
-class Calculation(models.Model):
-    master = models.ForeignKey(User, on_delete=models.CASCADE)
-    question = models.CharField(max_length=255)
-    answer = models.IntegerField()
+class Master(AbstractUser):
+    # Master-specific fields go here
+
+    def __str__(self):
+        return self.username
+
+class Student(AbstractUser):
+    # Student-specific fields go here
+
+    def __str__(self):
+        return self.username
